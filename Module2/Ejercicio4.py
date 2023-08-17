@@ -1,0 +1,7 @@
+m = int(input("Ingrese un numero entero positivo: "))
+n = int(input("Ingrese otro numero entero positivo: "))
+print ("##################################")
+print (f"El cociente entre {m} y {n} es: {m/n}")
+print ("##################################")
+print (f"El resto entre {m} y {n} es: {m%n}")
+print ("##################################")

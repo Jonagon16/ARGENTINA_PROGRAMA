@@ -1,0 +1,5 @@
+12/12/12,jona,mario,matematicas,A,2,-1
+12/11/12,diana,mario,mate,A,2,-1
+12/10/12,mozart,mario,matematicas,A,2,-1
+12/09/12,musolini,mario,mate,A,2,-1
+admin,admin,admin,admin,admin,admin,-1

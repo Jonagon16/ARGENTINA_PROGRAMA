@@ -1,0 +1,13 @@
+S.O= WINDOWS 8+
+IDE= PyCharm 2021
+####################################################
+Si no tiene funciones de eliminacion de acentos o mayusculas o minusculas no me alcanzo el tiempo
+####################################################
+Hay un menu secreto de Administrador se accede colocando admin en ves de un nro en el menu principal
+usuario:admin
+pass:admin
+####################################################
+Tanto en encargados como profesores se puede loggear simplemente colocando en todos los
+datos 'admin'.
+ej encargado: admin,admin
+ej profesor: admin,admin,admin,admin

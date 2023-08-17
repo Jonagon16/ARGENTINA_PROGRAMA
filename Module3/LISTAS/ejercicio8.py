@@ -1,0 +1,5 @@
+l = (input("ingrese varios elementos separados por una ',' : "))
+li = list(l.split(","))
+e = input("ingrese un elemento: ")
+p = li.insert(int(input("ingrese una posicion: ")), e)
+print(li)

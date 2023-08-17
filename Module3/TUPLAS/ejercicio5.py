@@ -1,0 +1,8 @@
+print("##################################################")
+t = (1,2,3,4,5,6,7)
+print(f"El concepto rodaja consiste en tomar una parte de una tupla")
+print(f"Como por ejemplo tenemos la tupla {t} pero solo imprimiremos de la pocicion 2 al 4 {t[2:4]}")
+print("##################################################")
+print(f"El concepto Zancada consiste en tomar una parte de una tupla segun el valor que se coloque")
+print(f"Como por ejemplo tenemos la tupla {t} pero solo imprimiremos los resultados del 2 en 2 {t[::2]}")
+print("##################################################")
