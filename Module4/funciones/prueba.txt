@@ -1,0 +1,4 @@
+DETALLE DE LA COMPRA
+Producto  CantidadPrecio/u  Total     
+Harina    10      50.00     500.00    
+matecocido13      40.00     520.00    

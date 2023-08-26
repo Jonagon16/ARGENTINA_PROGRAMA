@@ -1,0 +1,15 @@
+############################################################
+Razon Social: Gendarmeria Nacional                              #2023-08-25 22:56:50.333792#
+Numero de Facturacion: 34345436345
+Nombre: Jonathan Gonzalez, CONSUMIDOR FINAL
+DNI/CUIL: 40211345
+############################################################
+DETALLE DE LA COMPRA
+Producto  CantidadPrecio/u  Total     
+Harina    10      50.00     500.00    
+matecocido13      40.00     520.00    
+Importe Total
+Es un total de 0 sin IVA.
+Es un total de 0.0 con IVA.
+Total de recargo de IVA 0.0
+############################################################

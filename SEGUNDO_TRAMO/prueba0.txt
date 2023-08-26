@@ -1,0 +1,16 @@
+############################################################
+Razon Social: GENDARMERIA NACIONAL                              #2023-08-25 23:14:22.914135#
+Numero de Facturacion: 43543654754
+Nombre: JONATHAN GONZALEZ, CONSUMIDOR FINAL
+DNI/CUIL: 40211345
+############################################################
+DETALLE DE LA COMPRA
+Producto  CantidadPrecio/u  Total     
+SAL       4       345.00    1380.00   
+AGUA      7       90.00     630.00    
+PAÑAL     12      1200.00   14400.00  
+Importe Total
+Es un total de 16410 sin IVA.
+Es un total de 19856.1 con IVA.
+Total de recargo de IVA 3446.1
+############################################################
