@@ -49,7 +49,7 @@ while not x:
     print("#" * 60)
     if opcion == "1":
         try:
-            mercaderia={}
+            mercaderiaD={}
             nroFactura = input("Ingrese su nro de factura: ")
             nroFacturasCar += 1
             nfc = True
