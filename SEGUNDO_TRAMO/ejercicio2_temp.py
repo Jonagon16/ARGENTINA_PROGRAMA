@@ -12,11 +12,11 @@ def guardarmerc(arc):
             archivo.write("#" * 60)
             archivo.write("\nDETALLE DE LA COMPRA\n")
             archivo.write(f"{'Producto':<10}{'Cantidad':<8}{'Precio/u':<10}{'Total':<10}\n")
-            for k, l in j['mercaderia'].items():
-                cantidad = int(l['Cantidad comprada'])
-                precio = float(l['Precio por unidad'])
+            for producto, detalles in mercaderiaD.items():
+                cantidad = int(detalles['cantidad de mercaderia'])
+                precio = float(detalles['precio'])
                 total = cantidad * precio
-                archivo.write(f"{k:<10}{cantidad:<8}{precio:<10.2f}{total:<10.2f}\n")
+                archivo.write(f"{producto:<10}{cantidad:<8}{precio:<10.2f}{total:<10.2f}\n")
             archivo.write(f"Importe Total\n")
             archivo.write(f"Es un total de {totalfact} sin IVA.\n")
             archivo.write(f"Es un total de {iva(totalfact) + totalfact} con IVA.\n")
@@ -24,16 +24,17 @@ def guardarmerc(arc):
             archivo.write(f"#" * 60)
 
 
+
+hora = datetime.datetime.now()
 Facturafinal = {}
 nroFacturasCar = 0
 totalfact = 0
-totalfacttemp=0
 totalFacttotal = 0
 iva=lambda num:num*21/100
 nfc = False
-personas = ["",0]
+personas = {}
 mercaderiaD = {}
-
+cantmercaderiatotal=0
 
 x=False
 pf=lambda x,y:x*y
@@ -62,11 +63,10 @@ while not x:
                 precio = input(f"Ingrese precio por unidad de {mercaderia}: ")
                 mercaderiaD[mercaderia] = {'cantidad de mercaderia':cantMercaderia, 'precio':precio}
                 totalfact = int(totalfact) + (int(cantMercaderia)*int(precio))
-            totalFacttotal = int(totalFacttotal) + int(totalfact)
+                totalFacttotal = int(totalFacttotal) + int(totalfact)
             nombrePer = input("Ingrese nombre del cliente: ")
             dniPersona = input("Ingrese el DNI o CUIL: ")
-            if totalfact > personas[1]:
-                personas= [nombrePer,totalfact]
+            personas[dniPersona] = nombrePer
             #fFinal = Factura.factura(nroFactura, nomEmpresa, mercaderia, cantmercaderiatotal)
             #renglonFactura = RenglonDeFactura.renglonDeFactura(cantmercaderiatotal, mercaderia,
             #                                                  mercaderiaD[mercaderia]['precio'])
@@ -74,14 +74,11 @@ while not x:
                                         'Nombre de empresa':nomEmpresa,
                                         'Persona':nombrePer,
                                         'Dni':dniPersona,
-                                        'mercaderia':{},
-                                        'total':totalfact,
-                                        'Hora':datetime.datetime.now()}
+                                        'Hora':hora}
             for i, j in mercaderiaD.items():
-                Facturafinal[nroFactura]['mercaderia'][i] = {'Cantidad comprada': j['cantidad de mercaderia'],
+                Facturafinal[nroFactura][i] = {'Cantidad comprada': j['cantidad de mercaderia'],
                                                'Precio por unidad': j['precio']}
-            print(Facturafinal)
-            print(mercaderiaD)
+
 
         except ValueError:
             print("Se le ha olvidado de colocar un dato, intente nuevamente")
@@ -96,15 +93,15 @@ while not x:
                 print("#"*60)
                 print("DETALLE DE LA COMPRA")
                 print(f"{'Producto':<10}{'Cantidad':<8}{'Precio/u':<10}{'Total':<10}")
-                for k, l in j['mercaderia'].items():
-                    cantidad = int(l['Cantidad comprada'])
-                    precio = float(l['Precio por unidad'])
+                for k, l in mercaderiaD.items():
+                    cantidad = int(l['cantidad de mercaderia'])
+                    precio = float(l['precio'])
                     total = cantidad * precio
                     print(f"{k:<10}{cantidad:<8}{precio:<10.2f}{total:<10.2f}")
                 print(f"Importe Total")
-                print(f"Es un total de {j['total']} sin IVA.")
-                print(f"Es un total de {iva(j['total'])+j['total']} con IVA.")
-                print(f"Total de recargo de IVA {iva(j['total'])}")
+                print(f"Es un total de {totalfact} sin IVA.")
+                print(f"Es un total de {iva(totalfact)+totalfact} con IVA.")
+                print(f"Total de recargo de IVA {iva(totalfact)}")
                 print(f"#"*60)
                 print("¿Desea imprimir el ticket? Y/N ")
                 op=input("")
@@ -113,13 +110,8 @@ while not x:
                     guardarmerc("prueba.txt")
         else:
             print("No existe tickets guardados")
-
     elif opcion == "3":
-        print(f"El total del dia de la fecha fue de: {totalFacttotal}")
-
-    elif opcion == "4":
-        print(f"El Cliente que realizo la compra mas buena fue: {personas[0]} con un total comprado de {personas[1]}")
-
+        print(totalFacttotal)
     elif opcion == "5":
         x=True
     else:
