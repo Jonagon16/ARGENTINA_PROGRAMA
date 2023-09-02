@@ -1,15 +1,28 @@
 ############################################################
-Razon Social: Gendarmeria Nacional                              #2023-08-25 22:56:50.333792#
-Numero de Facturacion: 34345436345
-Nombre: Jonathan Gonzalez, CONSUMIDOR FINAL
+Razon Social: gn                              #2023-08-27 18:35:49.385117#
+Numero de Facturacion: 45678
+Nombre: jona, CONSUMIDOR FINAL
 DNI/CUIL: 40211345
 ############################################################
 DETALLE DE LA COMPRA
 Producto  CantidadPrecio/u  Total     
-Harina    10      50.00     500.00    
-matecocido13      40.00     520.00    
+sa        5       43.00     215.00    
+as        45      2.00      90.00     
 Importe Total
-Es un total de 0 sin IVA.
-Es un total de 0.0 con IVA.
-Total de recargo de IVA 0.0
+Es un total de 468 sin IVA.
+Es un total de 566.28 con IVA.
+Total de recargo de IVA 98.28
+########################################################################################################################
+Razon Social: gna                              #2023-08-27 18:36:56.717810#
+Numero de Facturacion: 123456
+Nombre: diana, CONSUMIDOR FINAL
+DNI/CUIL: 41154684
+############################################################
+DETALLE DE LA COMPRA
+Producto  CantidadPrecio/u  Total     
+go        6       78.00     468.00    
+Importe Total
+Es un total de 468 sin IVA.
+Es un total de 566.28 con IVA.
+Total de recargo de IVA 98.28
 ############################################################
