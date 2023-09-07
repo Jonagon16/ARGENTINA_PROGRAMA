@@ -1,0 +1,44 @@
+Dominio                 : JPC048
+Estado Registral Actual : -SIN NOVEDADES
+Registro Seccional      : 1114 - CAÑUELAS
+Direccion               : RUTA 205 KM 54
+Localidad               : ALEJANDRO PETION
+Provincia               : BUENOS AIRES
+Codigo Postal           : -
+Telefono                : (02226)423634
+Origen                  : IMPORTADO
+Motor                   : AUQ704053
+Marca Motor             : VOLKSWAGEN
+Chasis                  : 3VWSE29M5BM024304
+Marca Chasis            : VOLKSWAGEN
+Marca                   : 
+Modelo                  : 
+Tipo                    : 
+Inscripcion Inicial     : 26/01/2011
+Placa                   : ORIGINAL
+Cedula N                : ASW46762
+Fecha Emision           : 2022-11-15
+Titular                 : VERA REY FRANCO IVAN - D.N.I. 45826135
+Titulo N                : 
+Cantidad Consumida      : 1
+Nombre Titular          : VERA REY FRANCO IVAN
+Tipo Documento          : D.N.I.
+N Documento             : 45826135
+Cuit-Cuil               : 20458261351
+Porcentaje Titularidad  : 100
+Nro.                    : S/N
+Piso                    : 
+Depto                   : 
+C Postal                : 1808
+Fecha Titularidad       : 15/11/2022
+Fuente De La Informacion: D.N.R.P.A.
+Estado Actual           : SIN NOVEDADES
+Color                   : 
+Delito                  : 
+Dependencia             : 
+Fecha Denuncia          : 
+Informa                 : 
+Juez                    : 
+N Chasis                : 
+N Motor                 : 
+Denuncia                : SIN NOVEDADES

@@ -60,7 +60,8 @@ time.sleep(3)
 x = False
 json_dominio2= ""
 while not x:
-    json_dominio=ver_antecedente("antecedente_entrada.txt")
+    json_dominio=input("antecedente: ")
+        #ver_antecedente("antecedente_entrada.txt"))
     if json_dominio == "ls":
         x = True
     elif json_dominio != json_dominio2:

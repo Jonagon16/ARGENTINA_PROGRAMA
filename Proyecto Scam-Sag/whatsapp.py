@@ -1,5 +1,8 @@
 from selenium import webdriver
 from selenium.webdriver.common.keys import Keys
+from selenium.webdriver.support.ui import WebDriverWait
+from selenium.webdriver.support import expected_conditions as EC
+from selenium.webdriver.common.by import By
 import os
 import time
 driver = webdriver.Chrome()
@@ -9,6 +12,17 @@ def imprimir_antecedente(dic):
     max_clave = max(len(clave) for clave in dic.keys())
     for i, j in dic.items():
         print(f'{i:{max_clave}}: {j}')
+
+def formatear_diccionario(dic):
+    mensaje = ""
+    for clave, valor in dic.items():
+        if valor is not None and valor.strip() != "":
+            mensaje += f"*{clave.strip()} :* {valor}\n"
+
+    if mensaje.endswith('\n'):
+        mensaje = mensaje[:-1]
+
+    return mensaje
 def obtener_ultimo_mensaje():
     #ultimo mensaje
     ultimoMensaje = driver.find_elements(by="css selector", value="div.message-in")[-1].text
@@ -18,8 +32,9 @@ def obtener_ultimo_mensaje():
     return antecedente
 
 def enviar_antecedente(dic):
-    input_box = driver.find_element(by="css selector", value="div[data-tab='1'] [contenteditable='true']")
-    input_box.send_keys(imprimir_antecedente(dic))
+    mensaje = formatear_diccionario(dic)
+    input_box = driver.find_element(By.XPATH,'//div [@title="Escribe un mensaje"]')
+    input_box.send_keys(mensaje)
     input_box.send_keys(Keys.RETURN)
 
 def recibir_antecedente():
@@ -50,11 +65,14 @@ contacto = "span[title='INSECTA']"
 driver.find_element(by="css selector", value=contacto).click()
 time.sleep(2)
 ultimo_mensaje = ""
+mensaje_actual = obtener_ultimo_mensaje()
 while True:
-    mensaje_actual = obtener_ultimo_mensaje()
+
     if mensaje_actual != ultimo_mensaje:
+        mensaje_actual = obtener_ultimo_mensaje()
         print("Último antecedente:", mensaje_actual)
         antecedente = recibir_antecedente()
+        print(antecedente)
         enviar_antecedente(antecedente)
         ultimo_mensaje = mensaje_actual
     time.sleep(1)
