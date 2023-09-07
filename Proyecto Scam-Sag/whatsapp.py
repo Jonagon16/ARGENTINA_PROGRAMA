@@ -17,8 +17,22 @@ def formatear_diccionario(dic):
     mensaje = ""
     for clave, valor in dic.items():
         if valor is not None and valor.strip() != "":
-            mensaje += f"*{clave.strip()} :* {valor}\n"
+            mensaje += f"*{clave} :* {valor}\n"
 
+    if mensaje.endswith('\n'):
+        mensaje = mensaje[:-1]
+
+    return mensaje
+def formatear_mensaje_reducido(diccionario):
+    claves_mostradas = ["Dominio", "Motor", "Chasis", "Marca", "Modelo", "Titular", "Denuncia"]
+    mensaje = ""
+    for clave in claves_mostradas:
+        clave = clave.strip()
+        valor = diccionario.get(clave, "")  # Obtén el valor de la clave o cadena vacía si no existe
+        if valor.strip() != "":
+            mensaje += f"{clave} : {valor}\n"
+
+    # Elimina el último carácter de nueva línea adicional si es necesario
     if mensaje.endswith('\n'):
         mensaje = mensaje[:-1]
 
@@ -32,7 +46,7 @@ def obtener_ultimo_mensaje():
     return antecedente
 
 def enviar_antecedente(dic):
-    mensaje = formatear_diccionario(dic)
+    mensaje = formatear_mensaje_reducido(dic)
     input_box = driver.find_element(By.XPATH,'//div [@title="Escribe un mensaje"]')
     input_box.send_keys(mensaje)
     input_box.send_keys(Keys.RETURN)

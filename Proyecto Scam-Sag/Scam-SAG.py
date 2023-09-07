@@ -12,7 +12,8 @@ def ver_antecedente(f):
 def antecedente_dic(a,b):
     c = {}
     for i in range(len(a)):
-        c[a[i]] = b[i]
+        if a[i] not in c:
+            c[a[i]] = b[i]
     return c
 
 def imprimir_antecedente(dic):
@@ -70,6 +71,7 @@ while not x:
             continue
         else:
             m1,m2 = pedir_antecedente(json_dominio)
+            time.sleep(2)
             md = antecedente_dic(m1,m2)
             imprimir_antecedente(md)
             guardar_antecedente(md)
