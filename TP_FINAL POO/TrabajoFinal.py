@@ -45,12 +45,13 @@ while not x:
     if op == "1":
         try:
             nombre, materia, curso, division = input("Ingrese: Nombre,Materia,curso,division ").split(",")
-            Profe.mostrarProfesores(tprofesores)
-            if Profe.validarProfesor(nombre,materia,curso,division,tprofesores):
-                z = False
-                lp()
-            else:
+            if not Profe.validarProfesor(nombre,materia,curso,division,tprofesores):
                 raise SyntaxError
+            else:
+                z = False
+                c_prof =alum.nombre_id(nombre,tprofesores)
+                c_profesor = tprofesores[c_prof]
+                lp()
                 #ingreso al menu profesor
                 while not z:
                     print("#" * 20)
@@ -66,7 +67,7 @@ while not x:
                     if op1 == "1":
                         try:
                             alumno, materia, nota = input("ingrese: Alumno,materia,nota ").split(",")
-                            if alum.validarAlumno(alumno,talumnos) == "0":
+                            if not alum.validarAlumno(alumno,materia,talumnos):
                                 raise ValueError
                             else:
                                 Profe.modificarNota(alumno,materia,Profe.validarNota(nota),talumnos)
@@ -89,7 +90,7 @@ while not x:
                     elif op1 == "3":
                         try:
                             alumno, materia, nota = input("ingrese: Alumno,materia,nota ").split(",")
-                            if Profe.validarAlumno(alumno,talumnos) == "0":
+                            if alum.validarAlumno(alumno,talumnos) == "0":
                                 raise ValueError
                             else:
                                 Profe.modificarNota(alumno, materia, Profe.validarNota(nota), talumnos)
@@ -104,7 +105,7 @@ while not x:
                     elif op1 == "4":
                         try:
                             alumno, materia = input("ingrese: Alumno,materia ").split(",")
-                            if Profe.validarAlumno(alumno,talumnos) == "0":
+                            if alum.validarAlumno(alumno,talumnos):
                                 raise ValueError
                             else:
                                 Profe.eliminarNota(alumno, materia,talumnos)
@@ -118,6 +119,8 @@ while not x:
                     elif op1 == "5":
                         alum.guardarAlumnos("alumnos.txt", talumnos)
                         lp()
+                        c_prof = ""
+                        c_profesor = ""
                         z = True
 
                     else:
@@ -141,6 +144,8 @@ while not x:
             else:
                 v = False
                 lp()
+                c_enc = alum.nombre_id(nombre,tencargados)
+                c_encargado = tprofesores[c_enc]
                 #ingreso al menu encargado
                 while not v:
                     print("#" * 20)
@@ -157,10 +162,10 @@ while not x:
                         try:
                             fecha, alumno, materia, profesor, curso, division = input(
                                 "ingrese: Fecha,Alumno,materia,profesor,curso,division ").split(",")
-                            if Enca.validarAlumno(alumno,materia,talumnos) == "1":
+                            if alum.validarAlumno(alumno,materia,talumnos) == "1":
                                 raise SyntaxError
                             else:
-                                Enca.inscribirAlumno(fecha,alumno,materia,profesor,curso,division,talumnos)
+                                c_encargado.inscribirAlumno(fecha,alumno,materia,profesor,curso,division,talumnos)
                                 lp()
                                 print(f"Se inscribio al alumno {alumno} en la materia {materia} correctamente.")
                         except SyntaxError:
@@ -174,17 +179,17 @@ while not x:
 
                     elif op2 == "2":
                         lp()
-                        Enca.mostrarAlumnos(talumnos)
+                        alum.mostrarAlumnos(talumnos)
 
                     #modifica el alumno
                     elif op2 == "3":
                         try:
                             fecha, alumno, materia, profesor, curso, division = input(
                                 "ingrese: Fecha,Alumno,materia,profesor,curso,division ").split(",")
-                            if Enca.validarAlumno(alumno, materia,talumnos) == "0":
+                            if alum.validarAlumno(alumno, materia,talumnos) == "0":
                                 raise ValueError
                             else:
-                                Enca.inscribirAlumno(fecha, alumno, materia, profesor, curso, division,talumnos)
+                                c_encargado.inscribirAlumno(fecha, alumno, materia, profesor, curso, division,talumnos)
                                 lp()
                                 print(f"Se modifico el alumno {alumno} correctamente.")
                         except ValueError:
@@ -196,10 +201,10 @@ while not x:
                         try:
                             alumno, materia, = input(
                                 "ingrese el alumno que desea eliminar: alumno,materia ").split(",")
-                            if Enca.validarAlumno(alumno, materia,talumnos) == "0":
+                            if alum.validarAlumno(alumno, materia,talumnos) == "0":
                                 raise ValueError
                             else:
-                                Enca.eliminarAlumno(alumno, materia,talumnos)
+                                alum.eliminarAlumno(alumno, materia,talumnos)
                                 lp()
                                 print(f"Se elimino el alumno {alumno} correctamente.")
                         except ValueError:

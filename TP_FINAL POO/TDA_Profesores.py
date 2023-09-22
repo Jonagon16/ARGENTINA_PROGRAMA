@@ -74,11 +74,11 @@ def crear (nombre,materia,curso,division,dic):
 
 
 def validarProfesor (nombre,materia,curso,division,dic):
+    r = False
     for i,j in dic.items():
         if nombre == j.nombre and materia == j.materia and division == j.division and curso == j.curso:
-            return True
-        else:
-            return False
+            r = True
+    return r
 
 def mostrarNotas(dic):
     for alumno, datos in dic.items():

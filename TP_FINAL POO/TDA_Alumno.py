@@ -75,16 +75,16 @@ class Alumno:
 
 def formato_fecha(fecha):
     fecha = fecha.split("/")
+    r= False
     if len(fecha) == 3:
-        return True
-    else:
-        return False
+        r = True
+    return r
 
 def crearAlumnos(archivo):
     fl = {}
     with open(archivo,'r') as arch:
         for i in arch:
-            fecha, nombre, materia, profesor, curso, division, nota = i.strip().split(',')
+            fecha, nombre, profesor, materia, curso, division, nota = i.strip().split(',')
             alumno = Alumno(fecha,nombre,materia,profesor,curso,division,nota)
             fl[alumno.id] = alumno
     return fl
@@ -96,15 +96,15 @@ def limpiarDni(s):
 def guardarAlumnos(archivo,dict):
     f=open(archivo,"w")
     for i,j in dict.items():
-        f.write(f"{j.fecha},{j.nombre},{j.materia},{j.profesor},{j.curso},{j.division},{j.nota}\n")
+        f.write(f"{j.fecha},{j.nombre},{j.profesor},{j.materia},{j.curso},{j.division},{j.nota}\n")
     f.close()
 
 def validarAlumno(alumno,materia,dic):
+    r = False
     for i in dic.values():
         if alumno in i.nombre and materia == i.materia:
-            return True
-        else:
-            return False
+            r= True
+    return r
 
 def mostrarAlumnos(dic):
     for id, alumno in dic.items():
@@ -112,25 +112,25 @@ def mostrarAlumnos(dic):
         print(alumno)
 
 def eliminarAlumno(alumno,dic):
+    r = False
     for i,j in dic.items():
         if j == alumno:
             del dic[i]
-            return True
-        else:
-            return False
+            r = True
+    return r
 
 def filtrar_alumnos(profesor:object,dic:dict):
     d_alumnos = {}
+    r =False
     for i,alumno in dic.items():
         if profesor == alumno.profesor:
             d_alumnos[alumno.id] = alumno
-            return True
-        else:
-            return False
+            r = True
+    return r
 
 def nombre_id(nombre,dic:dict):
+    ids = None
     for id,alumno in dic.items():
         if alumno.nombre == nombre:
-            return id
-        else:
-            return None
+            ids = id
+    return ids

@@ -75,11 +75,11 @@ def guardarEncargado(archivo,dict):
     f.close()
 
 def validarEncargado (nombre,dni,dic):
+    r = False
     for i,j in dic.items():
         if nombre in j.nombre and dni == j.dni:
-            return True
-        else:
-            return False
+            r = True
+    return r
 
 
 
