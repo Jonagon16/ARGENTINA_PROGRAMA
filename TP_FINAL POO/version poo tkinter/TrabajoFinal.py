@@ -1,6 +1,6 @@
-import TDA_Profesores as Profe
-import TDA_Encargado as Enca
-import TDA_Alumno as alum
+import Profesores as Profe
+import Encargado as Enca
+import Alumno as alum
 import admin
 import os
 #diccionarios para desempaquetar archivos

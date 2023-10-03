@@ -1,5 +1,5 @@
-import TDA_Encargado as Enca
-import TDA_Profesores as Profe
+import Encargado as Enca
+import Profesores as Profe
 import os
 def lp():
     os.system('cls' if os.name == 'nt' else 'clear')

@@ -50,7 +50,7 @@ def menu_secreto(tencargados,tprofesores):
         elif op == "2":
             try:
                 nombre, dni = input("Ingrese Nombre,Dni: ").split(",")
-                if Enca.modificarEncargado(nombre,dni,tencargados):
+                if Enca.modificar(nombre,dni,tencargados):
                     lp()
                     print("Se modifico el encargado")
                     print(tencargados)
@@ -67,8 +67,8 @@ def menu_secreto(tencargados,tprofesores):
 
         elif op == "3":
             try:
-                DNI = input("Ingrese el DNI del encargado a eliminar: ")
-                Enca.eliminarEncargado(DNI, tencargados)
+                nombre = input("Ingrese encargado a eliminar: ")
+                tencargados.pop(nombre)
                 lp()
                 print("El encargado a sido eliminado")
             except KeyError:
@@ -92,7 +92,7 @@ def menu_secreto(tencargados,tprofesores):
         elif op == "5":
             try:
                 nombre, materia, curso, division = input("Ingrese Nombre, Materia, Curso, Division del Profesor: ").split(",")
-                if Profe.modificarProfesor(nombre, materia,curso,division, tprofesores):
+                if Profe.crear(nombre, materia,curso,division, tprofesores):
                     lp()
                     print("Se modifico el encargado correctamente")
                     print(tprofesores)
@@ -106,7 +106,7 @@ def menu_secreto(tencargados,tprofesores):
         elif op == "6":
             try:
                 nombre = input("Ingrese profesor a eliminar: ")
-                Profe.eliminarProfesor(nombre,tprofesores)
+                tprofesores.pop(nombre)
                 lp()
                 print("El profesor a sido eliminado")
             except KeyError:

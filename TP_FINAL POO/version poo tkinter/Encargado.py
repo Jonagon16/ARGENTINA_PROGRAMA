@@ -1,4 +1,4 @@
-import TDA_Alumno as al
+import Alumno as al
 class Encargado:
     __id = 0
     def __init__(self,nombre,dni):
@@ -99,5 +99,70 @@ def eliminarEncargado(dni,dic):
             retorno = True
     return retorno
 
+#tkinter
 
+def volver_atras():
+    ventana_encargado.destroy()
+    habilitar_ventana_principal()
+
+def agregar_alumno():
+    # Lógica para agregar un nuevo alumno
+    pass
+
+def modificar_alumno():
+    # Lógica para modificar un alumno existente
+    pass
+
+def mostrar_existente():
+    # Lógica para mostrar los detalles de un alumno existente
+    pass
+
+def eliminar_alumno():
+    # Lógica para eliminar un alumno
+    pass
+
+
+def abrir_ventana_encargado():
+    global ventana_encargado, nombre_encargado, select_alumno, modo_encargado_label
+
+    ventana_principal.withdraw()  # Oculta la ventana principal temporalmente
+
+    ventana_encargado = tk.Toplevel(ventana_principal)
+    ventana_encargado.title("Modo: Encargado")
+    ventana_encargado.geometry("500x500")
+
+    nombre_encargado = "Ejemplo Encargado"  # Reemplaza con el nombre real del encargado
+
+    modo_encargado_label = tk.Label(ventana_encargado, text=f"Modo: Encargado - Encargado: {nombre_encargado}")
+    modo_encargado_label.pack(side="top", anchor="ne")
+
+    label_select = tk.Label(ventana_encargado, text="Seleccionar Alumno:")
+    label_select.pack(anchor="w")
+
+    alumnos = ["Jonah", "Diana"]
+    select_alumno = ttk.Combobox(ventana_encargado, values=alumnos, state="readonly")
+    select_alumno.pack()
+
+    mostrar_button = tk.Button(ventana_encargado, text="Mostrar Alumno", command=mostrar_alumno)
+    mostrar_button.pack()
+
+    agregar_button = tk.Button(ventana_encargado, text="Agregar Nuevo", command=agregar_alumno)
+    modificar_button = tk.Button(ventana_encargado, text="Modificar", command=modificar_alumno)
+    existente_button = tk.Button(ventana_encargado, text="Existente", command=mostrar_existente)
+    eliminar_button = tk.Button(ventana_encargado, text="Eliminar Alumno", command=eliminar_alumno)
+
+    agregar_button.pack(side="right")
+    modificar_button.pack(side="right")
+    existente_button.pack(side="right")
+    eliminar_button.pack(side="right")
+
+    volver_button = tk.Button(ventana_encargado, text="Volver Atrás", command=volver_atras)
+    volver_button.pack(side="bottom")
+
+# Crear botón para abrir la ventana de encargado
+boton_encargado = tk.Button(ventana_principal, text="Encargado", command=abrir_ventana_encargado, pady=20)
+boton_encargado.pack()
+
+# Iniciar la ventana principal
+ventana_principal.mainloop()
 

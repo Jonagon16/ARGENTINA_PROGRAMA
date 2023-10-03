@@ -1,7 +1,4 @@
 class Alumno:
-    """
-    Esta clase utiliza como identificador un Id para identificar a cada objeto
-    """
     __id = 0
     def __init__(self,fecha, nombre, materia, profesor, curso, division,nota):
         self.__fecha = fecha
@@ -78,47 +75,36 @@ class Alumno:
 
 def formato_fecha(fecha):
     fecha = fecha.split("/")
-    r= False
     if len(fecha) == 3:
-        r = True
-    return r
+        return True
+    else:
+        return False
 
 def crearAlumnos(archivo):
-    """
-    CREA UN DICCIONARIO DE ALUMNOS A PARTIR DE UN ARCHIVO
-    :param archivo: as File
-    :return: El diccionario, clave: ID del alumno, valor: objeto alumno
-    """
-    diccionario_alumnos = {}
+    fl = {}
     with open(archivo,'r') as arch:
         for i in arch:
-            fecha, nombre, profesor, materia, curso, division, nota = i.strip().split(',')
+            fecha, nombre, materia, profesor, curso, division, nota = i.strip().split(',')
             alumno = Alumno(fecha,nombre,materia,profesor,curso,division,nota)
-            diccionario_alumnos[alumno.id] = alumno
-    return diccionario_alumnos
+            fl[alumno.id] = alumno
+    return fl
 
 def limpiarDni(s):
     s = s.replace(".","")
     return s
 
 def guardarAlumnos(archivo,dict):
-    """
-    Guarda el diccionario en el archivo
-    :param archivo: as File
-    :param dict: diccionario de alumnos
-    :return:
-    """
     f=open(archivo,"w")
     for i,j in dict.items():
-        f.write(f"{j.fecha},{j.nombre},{j.profesor},{j.materia},{j.curso},{j.division},{j.nota}\n")
+        f.write(f"{j.fecha},{j.nombre},{j.materia},{j.profesor},{j.curso},{j.division},{j.nota}\n")
     f.close()
 
 def validarAlumno(alumno,materia,dic):
-    r = False
     for i in dic.values():
         if alumno in i.nombre and materia == i.materia:
-            r= True
-    return r
+            return True
+        else:
+            return False
 
 def mostrarAlumnos(dic):
     for id, alumno in dic.items():
@@ -126,44 +112,34 @@ def mostrarAlumnos(dic):
         print(alumno)
 
 def eliminarAlumno(alumno,dic):
-    """
-    ELIMINA A UN ALUMNO DE UN DICCIONARIO
-    :param alumno: Nombre de Alumno
-    :param dic: Diccionario de alumnos
-    :return: True: al eliminar al alumno // False: al no encontrarlo
-    """
-    r = False
     for i,j in dic.items():
-        if j.nombre == alumno:
+        if j == alumno:
             del dic[i]
-            r = True
-            break
-    return r
+            return True
+        else:
+            return False
 
 def filtrar_alumnos(profesor:object,dic:dict):
-    """
-    SE UTILIZA PARA ENCONTRAR LOS ALUMNOS ANOTADOS PARA RENDIR UNA MATERIA CON UN PROFESOR
-    :param profesor: Profesor Loggeado
-    :param dic: Diccionario de alumnos
-    :return: True : si encuentra alumnos inscriptos en su materia // False :  en caso de no encontrar alumnos
-    """
-    diccionario_alumnos = {}
-    retorno =False
+    d_alumnos = {}
     for i,alumno in dic.items():
         if profesor == alumno.profesor:
-            diccionario_alumnos[alumno.id] = alumno
-            retorno = True
-    return retorno
+            d_alumnos[alumno.id] = alumno
+            return True
+        else:
+            return False
 
 def nombre_id(nombre,dic:dict):
-    """
-    TRANSFORMA EL NOMBRE EN UN ID
-    :param nombre: Nombre de un alumno
-    :param dic: Diccionario donde se encuentran los alumnos
-    :return: En caso de encontrar el id devuelve el mismo, y None en caso False
-    """
-    ids = None
     for id,alumno in dic.items():
         if alumno.nombre == nombre:
-            ids = id
-    return ids
+            return id
+        else:
+            return None
+
+alumnos = crearAlumnos("alumnos.txt")
+mostrarAlumnos(alumnos)
+
+def modificarNota(alumno,dic):
+    alumno = nombre_id(alumno,dic)
+    dic[alumno].nota = 10
+modificarNota("jona",alumnos)
+mostrarAlumnos(alumnos)

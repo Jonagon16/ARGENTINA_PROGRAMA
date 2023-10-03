@@ -50,14 +50,13 @@ def limpiarDni(s):
     s = s.replace(".","")
     return s
 
-def crear (nombre,dni,dic):
-    retorno = False
-    for i in dic.values():
-        if not int(i.dni) == int(dni):
+def crear (nombre,dni,tencargados):
+    for i in tencargados.values():
+        if int(i.dni) == int(dni):
+           return "El encargado Ya Existe"
+        else:
             encargado = Encargado(nombre,dni)
-            dic[encargado.id] = encargado
-            retorno = True
-    return retorno
+            tencargados[encargado.id] = encargado
 
 def crearEncargados(archivo):
     fl = {}
@@ -75,29 +74,12 @@ def guardarEncargado(archivo,dict):
         f.write(f"{j.nombre},{j.dni}\n")
     f.close()
 
-def modificarEncargado (nombre,dni,dic):
-    retorno = False
-    for i in dic.values():
-        if int(i.dni) == int(dni):
-            dic[i.nombre] = nombre
-            dic[i.dni] = dni
-            retorno = True
-    return retorno
-
 def validarEncargado (nombre,dni,dic):
     r = False
     for i,j in dic.items():
         if nombre in j.nombre and dni == j.dni:
             r = True
     return r
-
-def eliminarEncargado(dni,dic):
-    retorno = False
-    for i in dic.values():
-        if int(i.dni) == int(dni):
-            del dic[i]
-            retorno = True
-    return retorno
 
 
 

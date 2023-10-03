@@ -63,8 +63,11 @@ class Profesor:
         return f"ID: {self.__id}\n Nombre: {self.__nombre}\n Materia: {self.__materia}\n Curso: {self.__curso}\n Division: {self.__division}\n"
 
 def crear (nombre,materia,curso,division,dic):
-    nombre_id = al.nombre_id(nombre,dic)
-    if not nombre_id in dic:
+    nom = al.nombre_id(nombre,dic)
+    if nom in dic:
+        print("Este profesor ya Existe.")
+        return False
+    else:
         p = Profesor(nombre,materia,curso,division)
         dic[p.id] = p
         return True
@@ -122,26 +125,3 @@ def mostrarProfesores(dic):
     for id, p in dic.items():
         print("#" * 20)
         print(p)
-
-def eliminarProfesor(nombre,dic):
-    retorno = False
-    for i in dic.values():
-        if i.nombre == nombre:
-            del dic[i]
-            retorno = True
-        else:
-            return KeyError
-    return retorno
-
-def modificarProfesor (nombre,materia,curso,division,dic):
-    retorno = False
-    for i in dic.values():
-        if i.nombre == nombre:
-            dic[i.nombre] = nombre
-            dic[i.materia] = materia
-            dic[i.curso] = curso
-            dic[i.division] = division
-            retorno = True
-        else:
-            return KeyError
-    return retorno
