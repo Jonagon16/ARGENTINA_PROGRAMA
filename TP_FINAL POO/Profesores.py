@@ -1,4 +1,4 @@
-import TDA_Alumno as al
+import Alumno as al
 class Profesor:
     __id = 0
     def __init__(self,nombre,materia,curso,division):
@@ -70,6 +70,11 @@ def crear (nombre,materia,curso,division,dic):
         return True
 
 
+def mostrarProfesores(dic):
+    for id, profesor in dic.items():
+        print("#" * 20)
+        print(profesor)
+
 def validarProfesor (nombre,materia,curso,division,dic):
     r = False
     for i,j in dic.items():
@@ -118,10 +123,7 @@ def validarNota(nota):
     except ValueError:
         return '-1'
 
-def mostrarProfesores(dic):
-    for id, p in dic.items():
-        print("#" * 20)
-        print(p)
+
 
 def eliminarProfesor(nombre,dic):
     retorno = False

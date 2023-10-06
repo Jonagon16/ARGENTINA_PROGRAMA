@@ -3,3 +3,4 @@
 12/10/12,mozart,mario,matematicas,A,2,-1
 12/09/12,musolini,mario,mate,A,2,-1
 admin,admin,admin,admin,admin,admin,admin
+12/02/97,mencho,mario,mate,a,2,-1

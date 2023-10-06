@@ -76,12 +76,9 @@ class Alumno:
     def __str__(self):
         return f"ID: {self.__id}\nFecha: {self.__fecha}\nNombre: {self.__nombre}\nProfesor: {self.__materia}\nMateria: {self.__profesor}\nCurso: {self.__curso}\nDivisión: {self.__division}\nNota: {self.__nota}"
 
-def formato_fecha(fecha):
-    fecha = fecha.split("/")
-    r= False
-    if len(fecha) == 3:
-        r = True
-    return r
+
+
+
 
 def crearAlumnos(archivo):
     """
@@ -97,26 +94,24 @@ def crearAlumnos(archivo):
             diccionario_alumnos[alumno.id] = alumno
     return diccionario_alumnos
 
-def limpiarDni(s):
-    s = s.replace(".","")
-    return s
+
 
 def guardarAlumnos(archivo,dict):
     """
     Guarda el diccionario en el archivo
     :param archivo: as File
     :param dict: diccionario de alumnos
-    :return:
+    :return: True: al eliminar al alumno // False: al no encontrarlo
     """
     f=open(archivo,"w")
     for i,j in dict.items():
         f.write(f"{j.fecha},{j.nombre},{j.profesor},{j.materia},{j.curso},{j.division},{j.nota}\n")
     f.close()
 
-def validarAlumno(alumno,materia,dic):
+def validarAlumno(alumno,dic):
     r = False
     for i in dic.values():
-        if alumno in i.nombre and materia == i.materia:
+        if alumno in i.nombre:
             r= True
     return r
 
@@ -155,15 +150,4 @@ def filtrar_alumnos(profesor:object,dic:dict):
             retorno = True
     return retorno
 
-def nombre_id(nombre,dic:dict):
-    """
-    TRANSFORMA EL NOMBRE EN UN ID
-    :param nombre: Nombre de un alumno
-    :param dic: Diccionario donde se encuentran los alumnos
-    :return: En caso de encontrar el id devuelve el mismo, y None en caso False
-    """
-    ids = None
-    for id,alumno in dic.items():
-        if alumno.nombre == nombre:
-            ids = id
-    return ids
+

@@ -1,8 +1,7 @@
-import TDA_Encargado as Enca
-import TDA_Profesores as Profe
+import Encargado as Enca
+import Profesores as Profe
 import os
-def lp():
-    os.system('cls' if os.name == 'nt' else 'clear')
+from Funciones import *
 
 def validarAdmin(user, passw):
     try:
@@ -18,42 +17,52 @@ def validarAdmin(user, passw):
 
 def menu_secreto(tencargados,tprofesores):
     while True:
-        print("#" * 20)
-        print("Bienvenido Administrador")
-        print("1_Crear Encargado")
-        print("2_Modificar Encargado")
-        print("3_Eliminar Encargado")
-        print("4_Crear Profesor")
-        print("5_Modificar Profesor")
-        print("6_Eliminar Profesor")
-        print("7_Mostrar Encargados")
-        print("8_Mostrar Profesores")
-        print("9_Guardar y Salir")
-        op = input("")
-        print("#" * 20)
+        print(" ╔═════════════════════════════════════════╗")
+        print(" ║  Bienvenido Administrador               ║")
+        print(" ║    Elija una opción:                    ║")
+        print(" ║      1. Crear Encargado                 ║")
+        print(" ║      2. Modificar Encargado             ║")
+        print(" ║      3. Eliminar Encargado              ║")
+        print(" ║      4. Crear Profesor                  ║")
+        print(" ║      5. Modificar Profesor              ║")
+        print(" ║      6. Eliminar Profesor               ║")
+        print(" ║      7. Mostrar Encargados              ║")
+        print(" ║      8. Mostrar Profesores              ║")
+        print(" ║      9. Guardar y Salir                 ║")
+        print(" ╚═════════════════════════════════════════╝")
+        op3 = input(" Ingrese un Nro: ")
 
-        if op == "1":
+        if op3 == "1":
             try:
-                nombre, dni = input("Ingrese Nombre,Dni: ").split(",")
-                if Enca.crear(nombre,dni,tencargados):
-                    lp()
-                    print("Se creo correctamente el encargado")
-                    print(tencargados)
-                    Enca.guardarEncargado("encargados.txt",tencargados)
+                datos = input("Ingrese Nombre,Dni: ")
+                nombre, dni = datos.split(",")
+
+                if dni.isdigit():
+                    dni= int(dni)
+
+                    if Enca.crear(nombre, dni, tencargados):
+                        lp()
+                        print("Se creó correctamente el encargado")
+                        print(tencargados)
+                        Enca.guardarEncargado("encargados.txt", tencargados)
+                    else:
+                        lp()
+                        print("No se pudo crear el encargado")
                 else:
                     lp()
-                    print("No se pudo crear el encargado")
-            except ValueError:
+                    print("El DNI ingresado no es un número válido.")
+            except ValueError as error:
                 lp()
-                print("Debe colocar ambos datos")
+                print(f"Debe colocar ambos datos {error}")
 
-        elif op == "2":
+
+        elif op3 == "2":
             try:
                 nombre, dni = input("Ingrese Nombre,Dni: ").split(",")
                 if Enca.modificarEncargado(nombre,dni,tencargados):
                     lp()
                     print("Se modifico el encargado")
-                    print(tencargados)
+                    Enca.mostrarEncargados(tencargados)
                     Enca.guardarEncargado("encargados.txt",tencargados)
                 else:
                     lp()
@@ -65,7 +74,7 @@ def menu_secreto(tencargados,tprofesores):
                 lp()
                 print("El encargado que desa modificar no existe")
 
-        elif op == "3":
+        elif op3 == "3":
             try:
                 DNI = input("Ingrese el DNI del encargado a eliminar: ")
                 Enca.eliminarEncargado(DNI, tencargados)
@@ -74,7 +83,7 @@ def menu_secreto(tencargados,tprofesores):
             except KeyError:
                 lp()
                 print("El encargado que desa eliminar no existe")
-        elif op == "4":
+        elif op3 == "4":
             try:
                 nombre, materia, curso, division = input("Ingrese Nombre, Materia, Curso, Division del Profesor: ").split(",")
                 if Profe.crear(nombre, materia,curso,division, tprofesores):
@@ -89,7 +98,7 @@ def menu_secreto(tencargados,tprofesores):
                 lp()
                 print("Debe colocar ambos datos")
 
-        elif op == "5":
+        elif op3 == "5":
             try:
                 nombre, materia, curso, division = input("Ingrese Nombre, Materia, Curso, Division del Profesor: ").split(",")
                 if Profe.modificarProfesor(nombre, materia,curso,division, tprofesores):
@@ -103,7 +112,7 @@ def menu_secreto(tencargados,tprofesores):
             except ValueError:
                 lp()
                 print("Debe colocar ambos datos")
-        elif op == "6":
+        elif op3 == "6":
             try:
                 nombre = input("Ingrese profesor a eliminar: ")
                 Profe.eliminarProfesor(nombre,tprofesores)
@@ -113,15 +122,16 @@ def menu_secreto(tencargados,tprofesores):
                 lp()
                 print("El encargado que desa eliminar no existe")
 
-        elif op == "7":
+        elif op3 == "7":
             lp()
-            print(tencargados)
-
-        elif op == "8":
+            for i in tencargados.values():
+                print(i)
+        elif op3 == "8":
             lp()
-            print(tprofesores)
+            for i in tprofesores.values():
+                print(i)
 
-        elif op == "9":
+        elif op3 == "9":
             lp()
             break
 

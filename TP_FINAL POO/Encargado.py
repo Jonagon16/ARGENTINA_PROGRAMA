@@ -1,4 +1,5 @@
-import TDA_Alumno as al
+import Alumno as al
+from Funciones import *
 class Encargado:
     __id = 0
     def __init__(self,nombre,dni):
@@ -45,19 +46,41 @@ class Encargado:
         dic[a.id] = a
         self.__alumnosInscriptos.append(a)
 
+    def __str__(self):
+        return f"ID: {self.__id}\n Nombre: {self.__nombre}\n Dni: {self.__dni}\n"
 
-def limpiarDni(s):
-    s = s.replace(".","")
-    return s
 
-def crear (nombre,dni,dic):
+
+
+def preguntar (funcion):
+    respuesta = input("Elije una Opcion y/n: ").lower()
+    if respuesta == "y":
+        funcion()
+    elif respuesta == "n":
+        return False
+    else:
+        print("Elije una opcion valida")
+        return preguntar(funcion)
+def mostrarEncargados(dic):
+    for id, encargado in dic.items():
+        print("#" * 20)
+        print(encargado)
+
+def crear(nombre, dni, dic):
     retorno = False
-    for i in dic.values():
-        if not int(i.dni) == int(dni):
-            encargado = Encargado(nombre,dni)
-            dic[encargado.id] = encargado
+    copia_dic = dict(dic)
+
+    for i in copia_dic.values():
+        if i.dni == "admin":
+            pass
+        elif int(i.dni) == int(dni):
+            raise AttributeError
+        else:
+            encargado = Encargado(nombre, dni)
+            dic[encargado.nombre] = encargado
             retorno = True
     return retorno
+
 
 def crearEncargados(archivo):
     fl = {}
@@ -77,10 +100,13 @@ def guardarEncargado(archivo,dict):
 
 def modificarEncargado (nombre,dni,dic):
     retorno = False
-    for i in dic.values():
-        if int(i.dni) == int(dni):
-            dic[i.nombre] = nombre
-            dic[i.dni] = dni
+    copia_dic = dict(dic)
+    for i in copia_dic.values():
+        if i.dni == "admin":
+            pass
+        elif int(i.dni) == int(dni):
+            encargado = Encargado(nombre, dni)
+            dic[encargado.nombre] = encargado
             retorno = True
     return retorno
 
@@ -99,5 +125,14 @@ def eliminarEncargado(dni,dic):
             retorno = True
     return retorno
 
-
+def modificarAlumno(fecha=None, alumno=None, materia=None, profesor=None, curso=None, division=None, dic=None):
+    id = nombre_id(alumno,dic)
+    print (id)
+    print(dic[id])
+    if id in dic:
+        dic[id].fecha = fecha
+        dic[id].materia = materia
+        dic[id].profesor = profesor
+        dic[id].curso = curso
+        dic[id].division = division
 
